@@ -1,0 +1,17 @@
+[mgr]
+show_hidden = true
+ratio = [1, 4, 3]
+
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true, orphan = false, desc = "Edit" },
+]
+open = [
+	{ run = 'xdg-open "$@"', orphan = true, desc = "Open" },
+]
+
+[open]
+rules = [
+    { name = "*.{h,c,cpp,rs,txt,json,sh,toml,yaml,xml,zig,nu,cs,asm}", use = "edit" },
+    { name = "*", use = "open" },
+]

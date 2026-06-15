@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Waterfox
+Comment=Fast and Private browser
+Exec=/home/user/waterfox/waterfox
+NoDisplay=false
+Terminal=false
+Type=Application
+Icon=/home/user/waterfox/browser/chrome/icons/default/default128.png
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;

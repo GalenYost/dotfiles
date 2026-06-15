@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=OnlyOffice
+Exec=/home/user/onlyoffice/onlyoffice/desktopeditors/DesktopEditors
+NoDisplay=false
+Terminal=false
+Type=Application
+Icon=/home/user/onlyoffice/share/icons/hicolor/128x128/apps/onlyoffice-desktopeditors.png

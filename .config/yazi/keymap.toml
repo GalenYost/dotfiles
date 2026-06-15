@@ -1,0 +1,5 @@
+[mgr]
+prepend_keymap = [
+    { run = "remove --permanently", on = "d" },
+    { run = "plugin mount", on = "M" },
+]

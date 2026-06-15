@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Discord
+Exec=/home/user/discord/DiscordPTB
+Icon=/home/user/discord/discord.png
+Type=Application
+Categories=Network;InstantMessaging;
