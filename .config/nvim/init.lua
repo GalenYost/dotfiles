@@ -4,15 +4,31 @@ vim.pack.add({
     { src = 'https://github.com/ibhagwan/fzf-lua' },
     { src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter',       version = 'main' },
-    { src = 'https://github.com/sainnhe/gruvbox-material' },
     { src = 'https://github.com/stevearc/oil.nvim.git' },
+    { src = 'https://github.com/blazkowolf/gruber-darker.nvim' },
 })
-
-vim.g.gruvbox_material_background = 'soft'
-vim.cmd.colorscheme 'gruvbox-material'
 
 require 'options'
 require 'lsp'
+
+-- gruber-darker
+require 'gruber-darker'.setup {
+    bold = true,
+    invert = {
+        signs = false,
+        tabline = false,
+        visual = false,
+    },
+    italic = {
+        strings = false,
+        comments = false,
+        operators = false,
+        folds = false,
+    },
+    undercurl = true,
+    underline = true,
+}
+vim.cmd.colorscheme 'gruber-darker'
 
 -- oil
 function _G.get_oil_winbar()
@@ -34,7 +50,7 @@ require 'oil'.setup {
     delete_to_trash = false,
     skip_confirm_for_simple_edits = false,
     view_options = {
-        show_hidden = false,
+        show_hidden = true,
     },
     win_options = {
         winbar = "%!v:lua.get_oil_winbar()",
