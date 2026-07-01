@@ -1,0 +1,13 @@
+#!/home/user/.local/bin/sh
+
+export PS1='\W \$ '
+
+alias reboot="loginctl reboot"
+alias suspend="loginctl suspend"
+alias poweroff="loginctl poweroff"
+alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -e 'percentage' -e 'state'"
+
+alias ls="ls -l --color=auto"
+alias grep="grep --color=auto"
+
+set -o vi
