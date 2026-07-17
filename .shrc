@@ -5,9 +5,11 @@ export PS1='\W \$ '
 alias reboot="loginctl reboot"
 alias suspend="loginctl suspend"
 alias poweroff="loginctl poweroff"
-alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -e 'percentage' -e 'state'"
 
 alias ls="ls -l --color=auto"
 alias grep="grep --color=auto"
+
+alias yt-dlp-song="yt-dlp -x --audio-format mp3 --audio-quality 320K --add-metadata --extractor-args 'youtube:player_client=android' --cookies-from-browser 'firefox:/home/user/.var/app/net.waterfox.waterfox/.waterfox/byq1dx2b.default-release' -o '%(artist)s - %(title)s.%(ext)s'"
+alias yt-dlp-playlist="yt-dlp -x --audio-format mp3 --audio-quality 320K --add-metadata --embed-thumbnail --convert-thumbnails jpg --extractor-args 'youtube:player_client=android' --cookies-from-browser 'firefox:/home/user/.var/app/net.waterfox.waterfox/.waterfox/byq1dx2b.default-release' -o '%(artist)s - %(title)s.%(ext)s'"
 
 set -o vi

@@ -7,7 +7,7 @@ sudo xbps-install -Su
 ```
 #### MAIN
 ```
-sudo xbps-install -S xorg-minimal xinit xrandr xclip i3 rofi i3status ghostty firefox dejavu-fonts-ttf nerd-fonts-ttf flameshot telegram-desktop polkit elogind dbus 7zip unzip curl yazi obs xz mupdf imv setxkbmap udiskie xdg-desktop-portal-gtk xdg-desktop-portal xdg-utils gnome-themes-extra picom libxcb xcb-util xcb-util-image xcb-util-keysyms xcb-util-renderutil xcb-util-wm libxkbcommon qt5 qt5-x11extras qt5-multimedia qt5-svg qt5-declarative qt5-webengine qt5-webchannel qt5-location qt5ct adwaita-qt acpid xprop NetworkManager binutils xinput nushell fastfetch onefetch alsa-pipewire libtool libvterm-devel cmake emacs emacs-gtk3 bspwm sxhkd plymouth
+sudo xbps-install -S xorg-minimal xinit xrandr xclip i3 rofi i3status ghostty firefox dejavu-fonts-ttf nerd-fonts-ttf flameshot telegram-desktop polkit elogind dbus 7zip unzip curl yazi obs xz mupdf imv setxkbmap udiskie xdg-desktop-portal-gtk xdg-desktop-portal xdg-utils gnome-themes-extra picom libxcb xcb-util xcb-util-image xcb-util-keysyms xcb-util-renderutil xcb-util-wm libxkbcommon qt5 qt5-x11extras qt5-multimedia qt5-svg qt5-declarative qt5-webengine qt5-webchannel qt5-location qt5ct adwaita-qt acpid xprop NetworkManager binutils xinput nushell fastfetch onefetch alsa-pipewire libtool libvterm-devel cmake emacs emacs-gtk3 bspwm sxhkd plymouth alsa-lib-devel
 ```
 might need:
 ```
@@ -22,7 +22,7 @@ sudo xbps-install -S mesa-dri mesa-vulkan-intel vulkan-loader intel-video-accel 
 ```
 ## nvidia
 ```
-sudo xbps-install -S nvidia nvidia-libs nvidia-libs-32bit nvidia-vaapi-driver
+sudo xbps-install -S nvidia nvidia-libs nvidia-libs-32bit nvidia-vaapi-driver libva-utils
 ```
 
 #### DEPS FOR DEV AND BUILD
@@ -135,4 +135,53 @@ doas plymouth-set-default-theme -R void-mac-style
 doas nvim /etc/default/grub
 doas update-grub
 doas echo "plymouth --quit" >> /etc/rc.local
+```
+
+### doas
+```
+git clone https://codeberg.org/thejessesmith/doas $HOME/opt/doas
+cd doas
+sudo make install
+sudo cp -r /etc/pam.d/sudo /etc/pam.d/doas
+sudo mkdir /usr/local/etc && nvim /usr/local/etc/doas.conf
+    > permit persist user as root
+sudo chown root:root /usr/local/etc/doas.conf
+sudo chmod +x /usr/local/etc/doas.conf
+```
+
+### chimerautils
+```
+doas xbps-install -S cmake acl acl-devel ninja meson ncurses ncurses-devel libxo libxo-devel libedit libedit-devel openssl-devel
+```
+```
+git clone https://github.com/chimera-linux/chimerautils $HOME/opt/chimerautils
+cd $HOME/opt/chimerautils && mkdir build && cd build
+meson ..
+ninja all
+```
+
+### st
+```
+doas xbps-install -S freetype-devel fontconfig-devel xorg xorg-server-devel xorg-server-wayland libX11-devel libXpm-devel xorg-server-xvfb xorg-minimal libXft libXft-devel
+```
+```
+git clone https://git.suckless.org/st $HOME/st
+cd st && cp -r $HOME/dotfiles/st/config.h st/
+doas make clean install
+```
+
+
+### nvidia suspend issue
+```
+doas nvim /etc/modprobe.d/nvidia-power.conf
+    > options nvidia NVreg_PreserveVideoMemoryAllocations=1
+
+doas chmod +x /usr/libexec/elogind/system-sleep/nvidia.sh
+doas chmod +x /etc/zzz.d/suspend/nvidia-suspend
+doas chmod +x /etc/zzz.d/resume/nvidia-resume
+
+doas nvim /etc/elogind/sleep.conf
+    AllowSuspend=yes
+    SuspendByUsing=/usr/bin/zzz
+    HibernateByUsing=/usr/bin/ZZZ
 ```

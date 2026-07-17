@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:pixelsize=24:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=26:antialias=true:autohint=true";
 static char *font2[] = {
     "NotoSans Nerd Font:pixelsize=24:antialias=true:autohint=true",
     "Noto Color Emoji:pixelsize=24:antialias=true:autohint=true",
@@ -55,6 +55,12 @@ char *vtiden = "\033[?6c";
 static float cwscale = 1.0;
 static float chscale = 1.0;
 
+char *urlhandler = "xdg-open";
+char urlchars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    "abcdefghijklmnopqrstuvwxyz"
+                  "0123456789-._~:/?#@!$&'*+,;=%";
+char *urlprefixes[] = { "http://", "https://", NULL };
+
 /*
  * word delimiter string
  *
@@ -71,7 +77,7 @@ int allowaltscreen = 1;
 
 /* allow certain non-interactive (insecure) window operations such as:
    setting the clipboard text */
-int allowwindowops = 0;
+int allowwindowops = 1;
 
 /*
  * draw latency range in ms - from new content/keypress/etc until drawing.
@@ -202,6 +208,8 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
+	{ 0,                    Button4, kscrollup,      {.i = 5} },
+	{ 0,                    Button5, kscrolldown,    {.i = 5} },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },

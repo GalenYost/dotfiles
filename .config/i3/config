@@ -1,9 +1,16 @@
-font pango:Iosevka Nerd Font 10
+font pango:monospace 11
 
 # autoexec
+exec --no-startup-id pipewire
+exec --no-startup-id wireplumber
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id udiskie -aNT
+exec --no-startup-id picom --backend glx -D 0 --vsync
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
+exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 144
+exec --no-startup-id setxkbmap -layout us,ua,ru -option "grp:alt_shift_toggle,caps:none"
 
 # rules
 for_window [class="flameshot"] border none, floating enable, fullscreen disable, move absolute position 0 0
@@ -23,9 +30,9 @@ set $down j
 set $left h
 set $right l
 
-set $term ghostty
-set $music ghostty -e termusic
-set $files ghostty -e yazi ~
+set $term st
+set $music st -e termusic
+set $files st -e yazi ~
 # set $menu rofi -show drun
 set $menu dmenu_run -i -p "Run:" -fn "JetBrainsMono Nerd Font-12"
 set $screenshot flameshot gui
@@ -112,5 +119,4 @@ bindsym $mod+r mode "resize"
 
 bar {
     status_command "i3status"
-    font pango:JetBrainsMono Nerd Font 9
 }
