@@ -5,30 +5,45 @@ vim.pack.add({
     { src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter',       version = 'main' },
     { src = 'https://github.com/stevearc/oil.nvim.git' },
-    { src = 'https://github.com/blazkowolf/gruber-darker.nvim' },
+    { src = 'https://github.com/rebelot/kanagawa.nvim' },
 })
 
 require 'options'
 require 'lsp'
 
--- gruber-darker
-require 'gruber-darker'.setup {
-    bold = true,
-    invert = {
-        signs = false,
-        tabline = false,
-        visual = false,
+-- kanagawa
+require 'kanagawa'.setup {
+    compile = false,
+    commentStyle = { italic = false },
+    keywordStyle = { italic = false },
+    statementStyle = { bold = false },
+    theme = "dragon",
+    background = {
+        dark = "dragon",
+        light = "lotus"
     },
-    italic = {
-        strings = false,
-        comments = false,
-        operators = false,
-        folds = false,
-    },
-    undercurl = true,
-    underline = true,
+    overrides = function (colors)
+        local theme = colors.theme
+        local editor_bg = theme.ui.bg
+
+        return {
+            LineNr = { bg = editor_bg },
+            CursorLineNr = { bg = editor_bg },
+            SignColumn = { bg = editor_bg },
+
+            -- mini completion
+            Pmenu = { bg = editor_bg, fg = theme.ui.fg },
+            PmenuSel = { bg = theme.ui.bg_p1, fg = theme.ui.fg_bold },
+            PmenuKind = { bg = editor_bg, fg = theme.ui.fg_dim },
+            PmenuKindSel = { bg = theme.ui.bg_p1, fg = theme.ui.fg_bold },
+            PmenuExtra = { bg = editor_bg, fg = theme.ui.fg_dim },
+            PmenuSbar = { bg = editor_bg },
+            PmenuThumb = { bg = theme.ui.bg_p1 },
+        }
+    end,
 }
-vim.cmd.colorscheme 'gruber-darker'
+
+vim.cmd.colorscheme 'kanagawa'
 
 -- oil
 function _G.get_oil_winbar()
