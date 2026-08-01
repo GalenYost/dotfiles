@@ -1,7 +1,7 @@
 -- plugins
 vim.pack.add({
     { src = 'https://github.com/nvim-mini/mini.nvim' },
-    { src = 'https://github.com/ibhagwan/fzf-lua' },
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
     { src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter',       version = 'main' },
     { src = 'https://github.com/stevearc/oil.nvim.git' },
@@ -89,9 +89,28 @@ require 'oil'.setup {
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>')
 
--- fzf
-vim.keymap.set("n", "<leader>f", require 'fzf-lua'.files, { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>g", require 'fzf-lua'.live_grep, { silent = true, noremap = true })
+-- mini
+local pick = require('mini.pick')
+
+vim.keymap.set('n', '<leader>f', function()
+    pick.builtin.cli({
+        command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' },
+    },
+    {
+        source = {
+            name = 'Files'
+        }
+    })
+end, { desc = 'Find files' })
+
+vim.keymap.set('n', '<leader>g', function()
+    pick.builtin.grep_live({
+        tool = 'rg',
+        pattern = function(query)
+            return { 'rg', '--vimgrep', '--hidden', '--glob', '!.git/*', '-e', query }
+        end,
+    })
+end, { desc = 'Live grep' })
 
 -- mini
 require 'mini.misc'.setup_termbg_sync()
