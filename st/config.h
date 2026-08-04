@@ -5,12 +5,17 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:pixelsize=26:antialias=true:autohint=true";
+
+// #define FONT_NAME "monospace"
+#define FONT_NAME "IoskeleyMono Nerd Font"
+#define FONT_SIZE "25"
+
+static char *font = FONT_NAME ":pixelsize=" FONT_SIZE ":antialias=true:autohint=true";
 static char *font2[] = {
-    "NotoSans Nerd Font:pixelsize=24:antialias=true:autohint=true",
-    "Noto Color Emoji:pixelsize=24:antialias=true:autohint=true",
+    // "NotoSans Nerd Font:pixelsize=" FONT_SIZE ":antialias=true:autohint=true",
+    // "Noto Color Emoji:pixelsize=" FONT_SIZE ":antialias=true:autohint=true",
 };
-static int borderpx = 2;
+static int borderpx = 0;
 
 unsigned int scrollback_lines = 2000;
 
