@@ -1,7 +1,6 @@
 -- plugins
 vim.pack.add({
     { src = 'https://github.com/nvim-mini/mini.nvim' },
-    { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
     { src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter',       version = 'main' },
     { src = 'https://github.com/stevearc/oil.nvim.git' },
@@ -9,7 +8,6 @@ vim.pack.add({
 })
 
 require 'options'
-require 'lsp'
 
 -- kanagawa
 require 'kanagawa'.setup {
@@ -57,7 +55,6 @@ end
 require 'oil'.setup {
     default_file_explorer = true,
     columns = {
-        "icon",
         "permissions",
         "size",
         "mtime",
@@ -137,11 +134,9 @@ require('mini.completion').setup {
 require 'nvim-treesitter'.setup {
     ensure_installed = {
         'c', 'cpp', 'lua',
-        'java',
         'json', 'rust', 'zig',
         'html', 'css', 'markdown',
-        'svelte', 'javascript',
-        'typescript',
+        'javascript', 'typescript',
     },
     highlight = {
         enable = true,
