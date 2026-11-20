@@ -63,7 +63,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmen
 static const char *termcmd[]  = { "st", NULL };
 
 static const char *musiccmd[]   = { "st", "-e", "termusic", NULL };
-static const char *fscmd[]    = { "pcmanfm", NULL };
+static const char *fscmd[]    = { "thunar", NULL };
 static const char *screenshot[] = { "flameshot", "gui", NULL };
 
 static const char *audioMute[]  = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
